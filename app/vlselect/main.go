@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/VictoriaMetrics/VictoriaMetrics/app/vlselect/esquery" // New import
 	"github.com/VictoriaMetrics/VictoriaMetrics/app/vlselect/internalselect"
 	"github.com/VictoriaMetrics/VictoriaMetrics/app/vlselect/logsql"
 	"github.com/VictoriaMetrics/VictoriaMetrics/lib/cgroup"
@@ -48,6 +49,13 @@ func Init() {
 
 // Stop stops vlselect
 func Stop() {
+}
+
+// ElasticsearchQueryHandler handles elasticsearch query requests for VictoriaLogs
+func ElasticsearchQueryHandler(w http.ResponseWriter, r *http.Request) bool {
+	logger.Infof("ElasticsearchQueryHandler routing request for path: %s to esquery.HandleESQuery", r.URL.Path)
+	esquery.HandleESQuery(w, r)
+	return true
 }
 
 var concurrencyLimitCh chan struct{}

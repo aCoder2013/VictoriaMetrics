@@ -91,6 +91,11 @@ func requestHandler(w http.ResponseWriter, r *http.Request) bool {
 	if vlinsert.RequestHandler(w, r) {
 		return true
 	}
+	if r.URL.Path == "/elasticsearch/_search" || (len(r.URL.Path) > len("/elasticsearch/_search/") && r.URL.Path[:len("/elasticsearch/_search/")] == "/elasticsearch/_search/") {
+		if vlselect.ElasticsearchQueryHandler(w, r) {
+			return true
+		}
+	}
 	if vlselect.RequestHandler(w, r) {
 		return true
 	}
