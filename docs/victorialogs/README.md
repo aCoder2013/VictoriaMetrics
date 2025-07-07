@@ -167,6 +167,9 @@ VictoriaLogs switches to cluster mode if `-storageNode` command-line flag is spe
 
 See [cluster mode docs](https://docs.victoriametrics.com/victorialogs/cluster/) for details.
 
+For detailed information about VictoriaLogs storage architecture, data structures, encoding mechanisms, and protocols, 
+see the [storage architecture documentation](https://docs.victoriametrics.com/victorialogs/storage-architecture/).
+
 ## Forced merge
 
 VictoriaLogs performs data compactions in background in order to keep good performance characteristics when accepting new data.
